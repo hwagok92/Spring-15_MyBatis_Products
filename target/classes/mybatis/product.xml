@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="product.model.Product">
+
+	<select id="GetTotalCount" resultType="int">
+		select count(*) from products
+		<if test="whatColumn=='name'">
+			where name like #{keyword}
+		</if>
+		
+		<if test="whatColumn=='contens'">
+			where contens like #{keyword}
+		</if>
+	</select>
+	
+	<select id="GetDataList" resultType="MyProduct">
+		select * from products
+		<if test="whatColumn=='name'">
+			where name like #{keyword}
+		</if>
+		
+		<if test="whatColumn=='contens'">
+			where contens like #{keyword}
+		</if>
+		order by num desc
+	</select>
+	
+	<insert id="InsertData">
+		insert into products(num,name,company, image, stock, price, contents, point, inputdate) 
+		values(seqprod.nextval,#{name},#{company},#{image},#{stock},#{price},#{contents},#{point},#{inputdate} )  
+	</insert>
+	
+	<select resultType="MyProduct" id="GetData">
+		select * from products 
+		where num=#{num} 
+	</select>
+	
+	<select resultType="MyProduct" id="GetUpdate">
+		select * from products 
+		where num=#{num} 
+	</select>
+	
+	<update id="UpdateProduct">
+		update products set 
+		name=#{name}, company=#{company}, image=#{image}, stock=#{stock}, price=#{price}, contents= #{contents},
+		point=#{point}, inputdate=#{inputdate}
+		where num=#{num}
+	</update>
+</mapper>
+
+
+
+
+
+
+
+
+
