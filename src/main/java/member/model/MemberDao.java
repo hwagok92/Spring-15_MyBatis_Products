@@ -45,6 +45,16 @@ public class MemberDao {
 		member = sqlSessionTemplate.selectOne(namespace+".GetData",id);
 		return member;
 	}
+							//id,point두가지 를 한번에 보낼 수 없다 그래서 객체를 만들어 묶어서 보낸다
+	public void updatePoint(String id,int point) {
+		Member bean = new Member();
+		bean.setId(id);
+		bean.setMpoint(point);
+		
+		sqlSessionTemplate.selectOne(namespace+".UpdatePoint",bean);
+	}
+	
+	
 }
 
 

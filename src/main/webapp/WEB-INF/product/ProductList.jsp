@@ -43,7 +43,7 @@ ProductList.jsp<br><br>
 			</td>
 			
 			<td>
-				<a href="detail.prd?num=+${product.num}" }>${product.name }</a>
+				<a href="detail.prd?num=${product.num}" }>${product.name }</a>
 			</td>
 			
 			<td>
@@ -53,7 +53,7 @@ ProductList.jsp<br><br>
 				${product.price }
 			</td>
 			<td>
-				삭제
+				<a href="delete.prd?num=${product.num}" }>삭제
 			</td>
 			<td>
 				<input type="button" value="수정" onclick="goUpdate('${product.num}')">

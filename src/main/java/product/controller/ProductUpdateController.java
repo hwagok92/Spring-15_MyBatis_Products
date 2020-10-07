@@ -62,7 +62,8 @@ public class ProductUpdateController {
 		
 		//이 밑은 글자만 있는 이미지파일에 파일을 입히는 작업이다.
 		File file = new File(uploadPath + File.separator + product.getImage());
-
+		
+		
 		File delFile = new File(uploadPath + File.separator + product.getUploadOld());
 		delFile.delete();
 		

@@ -48,6 +48,17 @@
 		point=#{point}, inputdate=#{inputdate}
 		where num=#{num}
 	</update>
+	
+	<delete id="DeleteData">
+		delete from products where num=#{num}
+	</delete>
+	
+	<!--장바구니 안에 결재를 하면 결재를 한 수량만큼 재고 수량이 빠져나가는 과정  -->
+	<update id="UpdateStock">
+		update products set stock = stock - #{stock} 
+		where num=#{num} 
+	</update>
+	
 </mapper>
 
 

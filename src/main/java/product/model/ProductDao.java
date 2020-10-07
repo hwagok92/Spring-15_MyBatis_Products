@@ -53,6 +53,19 @@ public class ProductDao {
 	public void updateProduct(Product product) {
 		sqlSessionTemplate.update(namespace+".UpdateProduct", product);
 	}
+	
+	public void deleteData(int num) {
+		sqlSessionTemplate.delete(namespace+".DeleteData",num);
+	}
+	
+	public void updateStock(Integer pnum, Integer qty) {
+		Product bean = new Product();
+		bean.setNum(pnum);
+		bean.setStock(qty);
+
+		sqlSessionTemplate.update(namespace + ".UpdateStock", bean);// update는 키와 값 하나씩만 넣을 수 있다 값을 두개 이상 넣을 수가 없어서
+																		// product bean으로 값들을 하나로 묶어야 한다
+	}
 }
 
 
