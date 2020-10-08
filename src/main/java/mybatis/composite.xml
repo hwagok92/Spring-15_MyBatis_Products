@@ -3,7 +3,24 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="product.model.Composite">
-	  
+	<select id="OrderMall" resultType="MyOrder">
+		select * from orders where
+		mid=#{id} order by oid desc
+	</select>
+
+	<!-- 모든걸 다 찾아내는 것이 아니라 15번 상품에서 내가 원하는 목록들만 뽑아내기 위해서 products랑 orderdetails 
+		테이블을 inner join을 한다 -->
+	<!-- inner join을 할때 별칭을 지정해 줄때 이 상황에서는 ShoppingInfo라는 객체에 넣어줘야 하기때문에 mall\cart\ShoppingInfo의 
+		이름들에 맞춰서 별칭을 지정해줘야 한다. 내가 임의로 별칭을 지정하는건 여기서는 안된다. -->
+	<select id="ShowDetail" resultType="mall.cart.ShoppingInfo">
+		select p.num as pnum, p.name as pname, od.qty as qty, p.price as price, od.qty*p.price as amount
+		from orderdetails od inner join products p
+		on od.pnum = p.num and od.oid=#{oid}
+		order by od.odid desc
+	</select>
+
 </mapper>
+
+
 
 
